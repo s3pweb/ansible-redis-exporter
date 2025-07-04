@@ -55,7 +55,7 @@ redis_exporter_options:
   - "log-format {{ redis_exporter_log_format }}"
   - "{{ redis_exporter_check_keys | ternary('check-keys ' + redis_exporter_check_keys, '') }}"
   - "redis.addr {{ redis_exporter_redis_addr }}"
-  - "redis.user default"
+  - "redis.user replication"
   - "{{ redis_exporter_redis_password | ternary('redis.password ' + redis_exporter_redis_password, '') }}"
   - "skip-tls-verification"
   - "tls-client-key-file /etc/ssl/{{ ssl_cert_key }}"
