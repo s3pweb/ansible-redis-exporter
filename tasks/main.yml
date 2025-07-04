@@ -2,14 +2,14 @@
 
 - name: REDIS_EXPORTER | Install
   include_tasks: install.yml
+  with_dict: "{{ redis_databases }}"
+  loop_control:
+    loop_var: rd_item
   tags:
     - install
 
 - name: REDIS_EXPORTER | Configure
   include_tasks: config.yml
-  with_dict: "{{ redis_databases }}"
-  loop_control:
-    loop_var: rd_item
   tags:
     - configure
 
