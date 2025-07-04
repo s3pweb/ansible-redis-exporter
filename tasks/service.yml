@@ -1,8 +1,12 @@
 ---
 
+- set_fact:
+    database: "{{ rd_item.key }}"
+    port_offset: "{{ rd_item.value.port_offset | default(0) | int }}"
+
 - name: REDIS_EXPORTER | Configuring service
   ansible.builtin.systemd:
-    name: redis_exporter
+    name: "redis_exporter_{{ database }}"
     state: "{{ redis_exporter_service_state }}"
     enabled: "{{ redis_exporter_service_enabled }}"
     daemon_reload: yes

@@ -1,16 +1,19 @@
 ---
 
 - name: REDIS_EXPORTER | Install
-  ansible.builtin.include_tasks: install.yml
+  include_tasks: install.yml
   tags:
     - install
 
 - name: REDIS_EXPORTER | Configure
-  ansible.builtin.include_tasks: config.yml
+  include_tasks: config.yml
   tags:
     - configure
 
 - name: REDIS_EXPORTER | Service
-  ansible.builtin.include_tasks: service.yml
+  include_tasks: service.yml
+  with_dict: "{{ redis_databases }}"
+  loop_control:
+    loop_var: rd_item
   tags:
     - service
