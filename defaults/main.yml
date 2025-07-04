@@ -39,7 +39,6 @@ redis_exporter_root_path: /opt/redis_exporter
 redis_exporter_bin_path: "{{ redis_exporter_root_path }}/bin"
 
 # Flags (https://github.com/oliver006/redis_exporter#flags)
-#redis_exporter_port: "{{ 9121 + port_offset }}"
 redis_exporter_port: 9121
 redis_exporter_ip: 0.0.0.0
 redis_exporter_debug: false
