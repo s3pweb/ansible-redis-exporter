@@ -39,14 +39,13 @@ redis_exporter_root_path: /opt/redis_exporter
 redis_exporter_bin_path: "{{ redis_exporter_root_path }}/bin"
 
 # Flags (https://github.com/oliver006/redis_exporter#flags)
-#redis_exporter_port: 9121
 redis_exporter_port: "{{ 9121 + port_offset | int }}"
 redis_exporter_ip: 0.0.0.0
 redis_exporter_debug: false
 redis_exporter_log_format: txt #(txt | json)
 redis_exporter_check_keys: ""
 redis_exporter_redis_addr: "redis://localhost:{{ 6379 + port_offset | int }}"
-redis_exporter_redis_password: ""
+redis_exporter_redis_password: "{{ default_password }}"
 redis_exporter_redis_alias: redis_{{ ansible_nodename }}
 redis_exporter_redis_namespace: redis
 redis_exporter_web_telemetry_path: metrics
