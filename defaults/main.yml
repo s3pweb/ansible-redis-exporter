@@ -39,12 +39,13 @@ redis_exporter_root_path: /opt/redis_exporter
 redis_exporter_bin_path: "{{ redis_exporter_root_path }}/bin"
 
 # Flags (https://github.com/oliver006/redis_exporter#flags)
-redis_exporter_port: "{{ 9121 + port_offset }}"
+#redis_exporter_port: "{{ 9121 + port_offset }}"
+redis_exporter_port: 9121
 redis_exporter_ip: 0.0.0.0
 redis_exporter_debug: false
 redis_exporter_log_format: txt #(txt | json)
 redis_exporter_check_keys: ""
-redis_exporter_redis_addr: "redis://localhost:{{ 6379 + port_offset }}"
+redis_exporter_redis_addr: redis://localhost:6379
 redis_exporter_redis_password: ""
 redis_exporter_redis_alias: redis_{{ ansible_nodename }}
 redis_exporter_redis_namespace: redis
@@ -54,12 +55,10 @@ redis_exporter_options:
   - "{{ redis_exporter_debug | ternary('debug','') }}"
   - "log-format {{ redis_exporter_log_format }}"
   - "{{ redis_exporter_check_keys | ternary('check-keys ' + redis_exporter_check_keys, '') }}"
-  #- "redis.addr {{ redis_exporter_redis_addr }}"
-  - "redis.addr redis://localhost:{{ 6379 + port_offset }}"
+  - "redis.addr {{ redis_exporter_redis_addr }}"
   - "{{ redis_exporter_redis_password | ternary('redis.password ' + redis_exporter_redis_password, '') }}"
   - "namespace {{ redis_exporter_redis_namespace }}"
-  #- "web.listen-address {{ redis_exporter_ip }}:{{ redis_exporter_port }}"
-  - "web.listen-address {{ redis_exporter_ip }}:{{ 9121 + port_offset }}"
+  - "web.listen-address {{ redis_exporter_ip }}:{{ redis_exporter_port }}"
   - "web.telemetry-path /{{ redis_exporter_web_telemetry_path }}"
 #  redis.alias only for 0.x version https://github.com/oliver006/redis_exporter/pull/256
 #  - "redis.alias {{ redis_exporter_redis_alias }}"

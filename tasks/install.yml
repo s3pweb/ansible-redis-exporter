@@ -4,6 +4,9 @@
     database: "{{ rd_item.key }}"
     port_offset: "{{ rd_item.value.port_offset | default(0) | int }}"
 
+    redis_exporter_port: "{{ redis_exporter_port + port_offset }}"
+    redis_exporter_redis_addr: "redis://localhost:{{ 6379 + port_offset }}"
+
 - name: REDIS_EXPORTER | Ensure redis_exporter group
   ansible.builtin.group:
     name: "{{ redis_exporter_group }}"
