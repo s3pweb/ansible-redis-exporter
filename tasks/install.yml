@@ -78,6 +78,6 @@
 - name: REDIS_EXPORTER | Copy Daemon script
   ansible.builtin.template:
     src: redis_exporter.service.j2
-    dest: /etc/systemd/system/redis_exporter.service
+    dest: "/etc/systemd/system/redis_exporter_{{ database }}.service"
     mode: 0644
   notify: restart redis_exporter
